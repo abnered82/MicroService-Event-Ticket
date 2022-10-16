@@ -67,4 +67,16 @@ const deleteTicket = async(req,res = response) => {
 
 }
 
-module.exports = {ReserveTicket,deleteTicket}
+const getTickets = async(req,res = response) => {
+
+    const [tickets] = await Promise.all([
+        Ticket.find()
+
+    ]);
+
+    res.json({
+        tickets
+    });
+}
+
+module.exports = {ReserveTicket,deleteTicket,getTickets}
