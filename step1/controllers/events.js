@@ -69,4 +69,16 @@ const deleteEvent = async(req, res = response) => {
 
 }
 
-module.exports = {addEvent,deleteEvent}
+const getEvent = async  (req,res = response) =>{
+
+    const [events] = await Promise.all([
+        Event.find()
+    ]);
+
+    console.log(events);
+
+    res.json({
+        events
+    });
+}
+module.exports = {addEvent,deleteEvent,getEvent} 
