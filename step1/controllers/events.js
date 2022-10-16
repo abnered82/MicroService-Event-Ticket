@@ -2,10 +2,11 @@ const {response} = require('express');
 const Event = require('../models/event.js');
 
 
+
 const addEvent = async(req,res = response) => {
 
     const url = require('url');
-    const queryObj=url.parse(req.url,true).query;
+const queryObj=url.parse(req.url,true).query;
 
     try{
 
@@ -43,5 +44,29 @@ const addEvent = async(req,res = response) => {
 
 }
 
+const deleteEvent = async(req, res = response) => {
+    const url = require('url');
+    const queryObj=url.parse(req.url,true).query;
+    const id = queryObj.id;
 
-module.exports = {addEvent}
+    console.log(id);
+
+    try {
+        const eventDe = await Event.findByIdAndRemove(id);
+        res.json({
+            ok:true,
+            msg:'event eliminated'
+        })
+    } catch (error) {
+        console.log(error);
+
+        return res.json({
+            ok:false,
+            msg: "Error to delete event"
+        });
+        
+    }
+
+}
+
+module.exports = {addEvent,deleteEvent}
