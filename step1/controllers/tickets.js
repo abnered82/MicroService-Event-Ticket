@@ -42,5 +42,29 @@ const ReserveTicket = async(req,res = response) => {
     }
 }
 
+const deleteTicket = async(req,res = response) => {
+    const url = require ('url');
+    const queryObj=url.parse(req.url,true).query;
+    const id = queryObj.id;
 
-module.exports = {ReserveTicket}
+    try {
+        const ticketDelete = await Ticket.findByIdAndRemove(id);
+        res.json({
+            ok:true,
+            msg:'Ticket eliminated',
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        return res.json({
+            ok:false,
+            msg:'Error to delete ticket'
+        });
+        
+    }
+
+}
+
+module.exports = {ReserveTicket,deleteTicket}
