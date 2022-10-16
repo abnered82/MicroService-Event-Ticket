@@ -1,12 +1,8 @@
-const express = require('express');
+const {Router} = require('express');
+const {ReserveTicket} = require('../controllers/tickets.js')
+const router = Router();
 
-const router = express.Router();
-
-router.get('/', (req,res) => {
-
-    res.send('we are on tickets');
-
-});
+router.get('/reserveticket',[],ReserveTicket);
 
 
 

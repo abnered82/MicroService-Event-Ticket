@@ -17,6 +17,7 @@ app.get('/' , (req,res) => {
 });
 
 app.use('/', require('./routes/events.js'));
+app.use('/', require('./routes/tickets.js'));
 
 app.listen(process.env.PORT, () => {
     console.log('Running in the port', process.env.PORT);
