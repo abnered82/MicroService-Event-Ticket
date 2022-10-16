@@ -81,4 +81,19 @@ const getEvent = async  (req,res = response) =>{
         events
     });
 }
-module.exports = {addEvent,deleteEvent,getEvent} 
+
+const SearchTickets= async (req,res = response) => {
+
+    const url = require('url');
+    const queryObj=url.parse(req.url,true).query;
+
+    const tickets = await Event.find({
+        $or:[{ date : queryObj.date}],
+        $and:[{remaining_tickets : { $gt:queryObj.tickets}}]
+    });
+
+    res.json({
+        results:tickets
+    })
+}
+module.exports = {addEvent,deleteEvent,getEvent,SearchTickets} 
