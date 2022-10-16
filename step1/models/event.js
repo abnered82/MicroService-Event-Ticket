@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const {Schema,model} = require('mongoose');
 
-const EventSchema = mongoose.Schema({
+const EventSchema = Schema({
 
     name : {
         type : String,
@@ -33,7 +33,7 @@ EventSchema.method('toJSON', function() {
 })
 
 
-module.exports = mongoose.model('Events',EventSchema);
+module.exports = model('Events',EventSchema);
 
 
 

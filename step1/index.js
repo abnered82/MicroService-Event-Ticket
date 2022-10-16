@@ -1,22 +1,24 @@
 const express = require('express');
-const router = express();
 const cors = require('cors');
 require('dotenv').config();
 const { dbConnection } = require('./database/config');
 
+const app = express();
 dbConnection();
 
-router.use(express.json());
-router.use(cors());
+app.use(express.json());
+app.use(cors());
 
-router.get('/' , (req,res) => {
+app.get('/' , (req,res) => {
     res.json({
         ok:true,
         msg:'Active'
 })
 });
 
-router.listen(process.env.PORT, () => {
+app.use('/', require('./routes/events.js'));
+
+app.listen(process.env.PORT, () => {
     console.log('Running in the port', process.env.PORT);
 });
 
