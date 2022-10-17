@@ -1,6 +1,6 @@
 const {response} = require('express');
 const Event = require('../models/event.js');
-
+const { v4: uuidv4 } = require('uuid');
 
 
 const addEvent = async(req,res = response) => {
@@ -9,7 +9,7 @@ const addEvent = async(req,res = response) => {
 const queryObj=url.parse(req.url,true).query;
 
     try{
-
+        const _id = uuidv4(); 
         const name = queryObj.name;
         const date = queryObj.date;
         const tickets = queryObj.tickets;
@@ -25,7 +25,7 @@ const queryObj=url.parse(req.url,true).query;
             });
         }
 
-        const event = new Event({name,date,tickets,remaining_tickets});
+        const event = new Event({_id,name,date,tickets,remaining_tickets});
 
         await event.save();
 
@@ -40,7 +40,7 @@ const queryObj=url.parse(req.url,true).query;
             ok:false,
             msg: 'Error to add an event'
         });
-    }
+    } 
 
 }
 

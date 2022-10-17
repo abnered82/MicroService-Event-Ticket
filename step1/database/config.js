@@ -18,4 +18,8 @@ const dbConnection = async() => {
     }
 }
 
-module.exports = { dbConnection };
+function close(){
+    return mongoose.disconnect();
+}
+
+module.exports = { dbConnection,close };

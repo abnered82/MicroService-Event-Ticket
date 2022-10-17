@@ -1,12 +1,14 @@
 const {response} = require('express');
 const Event = require('../models/event.js');
 const Ticket = require('../models/tickets.js');
+const { v4: uuidv4 } = require('uuid');
 
 const ReserveTicket = async(req,res = response) => {
     const url = require('url');
     const queryObj = url.parse(req.url,true).query;
 
     try {
+        const _id = uuidv4();
         const name = queryObj.name;
         const name_event = queryObj.event;
         const availableTicket = await Event.findById(name_event);
