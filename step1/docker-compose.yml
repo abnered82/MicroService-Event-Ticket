@@ -1,0 +1,31 @@
+version: "3.9"
+
+services: 
+    events:
+          container_name: myevents
+          restart: always
+          build: ./events
+          ports:
+              - "5003:3000"
+          links:
+              - eventsmongo
+
+    tickets:
+          container_name: mytickets
+          restart: always
+          build: ./tickets
+          ports:
+              - "5002:3000"
+          links:
+              - ticketsmongo
+    eventsmongo:
+          container_name: eventsmongo
+          image: mongo 
+          ports:
+              - "27018:27017"
+
+    ticketsmongo:
+          container_name: ticketsmongo
+          image: mongo 
+          ports:
+              - "27019:27017"

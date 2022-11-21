@@ -1,8 +1,8 @@
 const {Router} = require('express');
-const {ReserveTicket,deleteTicket,getTickets} = require('../controllers/tickets.js')
+const {deleteTicket,getTickets} = require('../controllers/tickets.js')
 const router = Router();
 
-router.get('/reserveticket',[],ReserveTicket);
+//router.get('/reserveticket',[],ReserveTicket);
 
 router.get('/deleteticket', [
 ], deleteTicket);

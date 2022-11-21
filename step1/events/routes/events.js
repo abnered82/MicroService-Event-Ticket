@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {addEvent, deleteEvent,getEvent,SearchTickets} = require('../controllers/events');
+const {addEvent, deleteEvent,getEvent,SearchTickets} = require('../controllers/events.js');
 const router = Router();
 
 router.get('/addevent', [ 

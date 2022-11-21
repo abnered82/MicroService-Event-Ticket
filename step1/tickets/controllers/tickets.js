@@ -1,8 +1,9 @@
 const {response} = require('express');
-const Event = require('../models/event.js');
+//const Event = require('../models/event.js');
 const Ticket = require('../models/tickets.js');
 const { v4: uuidv4 } = require('uuid');
 
+/*
 const ReserveTicket = async(req,res = response) => {
     const url = require('url');
     const queryObj = url.parse(req.url,true).query;
@@ -19,11 +20,11 @@ const ReserveTicket = async(req,res = response) => {
             });
         }
 
-        const ticket = new Ticket(queryObj);
+        const ticket = new Ticket({_id,name});
 
         await ticket.save();
 
-        await Event.findOneAndUpdate({ _id:name_event}, {
+        await Event.findOneAndUpdate({_id:name_event}, {
             $set:{
                 sold_tickets: availableTicket.sold_tickets+1,
                 remaining_tickets: availableTicket.remaining_tickets-1
@@ -33,7 +34,7 @@ const ReserveTicket = async(req,res = response) => {
         res.json({
             ok:true,
             msg: 'Ticket reserved',
-            id: ticket.id,
+            id: ticket._id,
         });
     } catch (error) {
         console.log(error);
@@ -42,7 +43,7 @@ const ReserveTicket = async(req,res = response) => {
             msg:'Error to reserve a ticket'
         });
     }
-}
+}*/
 
 const deleteTicket = async(req,res = response) => {
     const url = require ('url');
@@ -81,4 +82,4 @@ const getTickets = async(req,res = response) => {
     });
 }
 
-module.exports = {ReserveTicket,deleteTicket,getTickets}
+module.exports = {deleteTicket,getTickets}

@@ -12,11 +12,11 @@ app.use(cors());
 app.get('/' , (req,res) => {
     res.json({
         ok:true,
-        msg:'Active'
+        msg:'Active on tickets'
 })
 });
 
-app.use('/', require('./routes/events.js'));
+
 app.use('/', require('./routes/tickets.js'));
 
 app.listen(process.env.PORT, () => {
