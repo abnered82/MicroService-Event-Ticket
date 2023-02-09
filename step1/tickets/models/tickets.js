@@ -6,8 +6,7 @@ const ticketSchema = Schema({
          type:String
     },
     name_event : {
-        /*type: Schema.Types.ObjectId,
-        ref: 'Event'*/
+        
 
         type : String,
         require : true
