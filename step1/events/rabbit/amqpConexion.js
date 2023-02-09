@@ -29,9 +29,7 @@ class Eventos {
         )
     );
   
-      console.log(
-        `add new  Event is sent to exchange ${eventos}`
-      );
+      
     }
   }
 
