@@ -19,6 +19,7 @@ services:
           links:
               - eventsmongo
               - rabbitmq
+              - consul 
 
     tickets:
           container_name: mytickets
@@ -29,6 +30,7 @@ services:
           links:
               - ticketsmongo
               - rabbitmq
+              - consul
     eventsmongo:
           container_name: eventsmongo
           image: mongo 
@@ -41,5 +43,26 @@ services:
           ports:
               - "27019:27017"
 
+    consul:
+
+        image: consul:latest
+        ports:
+            - "8400:8400"
+            - "8500:8500"
+            - "8600:8600"
+            - "8600:8600/udp"
+        command: "agent -server -bootstrap-expect=1 -ui -client 0.0.0.0"
+
   
+    caddy:
+        image: caddy:2.4.3-alpine
+        volumes:
+            - ./caddy/Caddyfile:/home/caddy/Caddyfile
+        command: "caddy run --config /home/caddy/Caddyfile"
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - events
+            - tickets
 

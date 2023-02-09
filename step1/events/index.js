@@ -2,15 +2,30 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { dbConnection } = require('./database/config');
-
+const Consul = require('consul');
+const consul = new Consul({host:'consul', port: '8500'});
 const amqplib = require('amqplib');
 const amqpUrl = process.env.AMQP_URL || 'amqp://rabbitmq';
 //const { connect } = require('mongoose');
 
+async function registerService() {
+  try {
+    await consul.agent.service.register({
+      name: "myevents",
+      address: "myevents",
+      port: 3000
+    });
+    console.log('Successfully registered');
+  } catch (error) {
+    console.error('Error registering with Consul:', error);
+  }
+}
+
+
 const app = express();
 dbConnection();
 
-
+registerService()
 
 
 
