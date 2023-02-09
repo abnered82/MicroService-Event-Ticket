@@ -7,7 +7,6 @@ const Consul = require('consul');
 const consul = new Consul({host:'consul', port: '8500'});
 const app = express();
 
-// register consul
 async function registerService() {
     try {
       await consul.agent.service.register({
@@ -48,12 +47,6 @@ app.listen(process.env.PORT, () => {
 
 
 
-//connect to mongoDB
-
-//mongoose.connect('mongodb+srv://abnerdb:abner@rest.dqxfkyi.mongodb.net/?retryWrites=true&w=majority', () => 
-//console.log('connected to MongoDb'));
-
-//router.listen(3000);
 
 
 

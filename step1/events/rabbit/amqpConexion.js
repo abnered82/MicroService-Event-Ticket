@@ -21,16 +21,7 @@ class Eventos {
       }
 
 
-      /*const exchangeName = config.rabbitMQ.exchangeName;
-      await this.channel.assertExchange(exchangeName, "direct");
-  
- 
-      await this.channel.publish(
-        exchangeName,
-        routingkey,
-        Buffer.from(JSON.stringify(eventos))
-      );*/
-
+      
       this.channel.sendToQueue(
         "Events",
         Buffer.from(
