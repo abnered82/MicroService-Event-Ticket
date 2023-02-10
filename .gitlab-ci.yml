@@ -6,4 +6,4 @@ build-code-job:
   script:
     - echo "Building the project..."
     - cd step1
-    - docker-compose up --build
+    - docker-compose create --build

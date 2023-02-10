@@ -7,11 +7,25 @@ http://localhost {
 
     }
 
-     reverse_proxy /reservetickets tickets:3000 {
+     reverse_proxy /reserveticket tickets:3000 {
 
     }
 
      reverse_proxy /addevent events:3000 {  
 
     }
+    
+     reverse_proxy /deleteticket tickets:3000 {
+
+    }
+
+     reverse_proxy /searchtickets events:3000 {  
+
+    } 
+
+     reverse_proxy /deleteevent events:3000 {  
+
+    }
+
+
 }
